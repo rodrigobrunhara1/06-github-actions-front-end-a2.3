@@ -1,4 +1,4 @@
-name: "CD (Entrega/Delivery Continua): Main Workflow"
+name: "CD (Entrega/Delivery Continua): Main Workflow 2"
 
 env:
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
@@ -7,15 +7,14 @@ env:
 
 on:
   push:
-    branches: [main, a2.3]
+    branches: [main, a2.3, versao-1]
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Run Deploy
-        run: | 
+        run: |
           yarn install
           yarn deploy:prod
-
