@@ -8,5 +8,5 @@ export default function HomeScreen() {
         <a>Ir para a sobre Dev</a>
       </NextLink>
     </div>
-   
+      
 }
