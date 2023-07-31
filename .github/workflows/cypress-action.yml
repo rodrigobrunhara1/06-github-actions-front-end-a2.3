@@ -1,4 +1,4 @@
-name: "CI (Integração Continua): Main Workflow Principal "
+name: "Cypress Testes E2E"
 
 env:
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
@@ -11,19 +11,15 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  linter:
+  test_e2e:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Run Installation
-        run: yarn install
-      - name: Run Linter
-        run: yarn lint
-  preview:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run Installation
-        run: yarn install
-      - name: Run Deployment
-        run: yarn deploy:preview
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.13.0
+          cache: "yarn"
+      - name: Cypress
+        uses: cypress-io/github-action@v4
+        with:
+          browser: chrome
